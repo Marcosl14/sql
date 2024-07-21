@@ -1,0 +1,4 @@
+-- ono to one
+-- one to many
+-- many to many
+-- self join relation
