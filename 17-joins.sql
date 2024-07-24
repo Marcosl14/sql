@@ -1,5 +1,4 @@
 -- Sintaxis Implícita (Estilo Antiguo)
-
 SELECT
     a.name AS country,
     b.name AS continent
@@ -12,7 +11,6 @@ ORDER BY
 	b.name
 
 -- Sintaxis Explícita (JOIN)
-
 SELECT
     a.name AS country,
     b.name AS continent
@@ -24,6 +22,13 @@ ON
     a.continent = b.code
 ORDER BY 
     b.name;
+
+
+-- Contando...
+SELECT COUNT(*), created_by, users.name FROM posts
+INNER JOIN users ON users.user_id = posts.created_by
+GROUP BY created_by, users.name
+ORDER BY COUNT(*) DESC
 
 
 
